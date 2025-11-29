@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Chess Club",
+    "description": "Play chess and compete with other students.",
+    "category": "Recreation"
+  },
+  {
+    "name": "Programming Class",
+    "description": "Learn programming basics and advanced topics.",
+    "category": "Education"
+  },
+  {
+    "name": "Gym Class",
+    "description": "Participate in physical activities and sports.",
+    "category": "Health"
+  },
+  {
+    "name": "GitHub Skills",
+    "description": "Learn practical coding and collaboration skills with GitHub. Part of the GitHub Certifications program. Registration closes soon!",
+    "category": "Education",
+    "time_sensitive": true,
+    "link": "https://resources.github.com/learn/certifications/"
+  }
+]
