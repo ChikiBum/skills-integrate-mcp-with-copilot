@@ -6,9 +6,8 @@ on:
 
 permissions:
   contents: write
-  workflow_dispatch:
-  issue_comment:
-    types: [created]
+  actions: write
+  issues: write
 
 # Prevent running multiple times if multiple comments are created
 concurrency:
