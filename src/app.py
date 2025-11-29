@@ -5,7 +5,7 @@ A super simple FastAPI application that allows students to view and sign up
 for extracurricular activities at Mergington High School.
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 import os
@@ -46,12 +46,32 @@ def root():
 
 
 @app.get("/activities")
-def get_activities():
-    # Return a list of activities for easier frontend handling
-    return [
+def get_activities(
+    category: str = Query(None),
+    search: str = Query(None),
+    sort: str = Query("name")
+):
+    # Build list of activities
+    result = [
         {"name": name, **data}
         for name, data in activities.items()
     ]
+    # Filter by category
+    if category:
+        result = [a for a in result if a["category"] == category]
+    # Filter by search
+    if search:
+        search_lower = search.lower()
+        result = [
+            a for a in result
+            if search_lower in a["name"].lower() or search_lower in a["description"].lower()
+        ]
+    # Sort
+    if sort == "name":
+        result.sort(key=lambda a: a["name"].lower())
+    elif sort == "category":
+        result.sort(key=lambda a: a["category"].lower())
+    return result
 
 
 @app.post("/activities/{activity_name}/signup")
